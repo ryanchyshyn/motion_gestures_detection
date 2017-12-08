@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:title="TG"
+          android:id="@+id/action_test_green"
+          app:showAsAction="always"/>
+
+    <item android:title="TR"
+          android:id="@+id/action_test_red"
+          app:showAsAction="always"/>
+</menu>

@@ -1,0 +1,72 @@
+apply plugin: 'com.android.library'
+apply plugin: 'com.github.dcendents.android-maven'
+apply plugin: "com.jfrog.bintray"
+apply plugin: 'maven-publish'
+
+def bintray_user = System.getenv("bintray_user")
+def bintray_key = System.getenv("bintray_key")
+
+group = 'uk.co.lemberg'
+version = '1.0.0'
+archivesBaseName = 'motiondetectionlib'
+def artifactPrefix = archivesBaseName + '-' + version
+def lib_version = version
+
+bintray {
+    user = bintray_user
+    key = bintray_key
+    configurations = ['archives']
+
+    filesSpec {
+        from 'build/outputs/aar', 'build/poms'
+        rename '.+\\.aar', artifactPrefix + '.aar'
+        rename 'pom-default\\.xml', artifactPrefix + '.pom'
+        into 'uk/co/lemberg/motiondetectionlib/' + version
+    }
+
+    pkg {
+        repo = 'maven'
+        name = 'motiondetectionlib'
+        userOrg = bintray_user
+        licenses = ['Apache-2.0']
+        vcsUrl = 'https://github.com/ryanchyshyn/' // TODO
+        publish = true
+
+        version {
+            name = lib_version
+            desc = 'Initial release'
+            released  = new Date()
+            vcsTag = lib_version
+        }
+    }
+}
+
+android {
+    compileSdkVersion 26
+
+    defaultConfig {
+        minSdkVersion 21
+        targetSdkVersion 26
+        versionCode 1
+        versionName version
+
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    implementation 'com.android.support:appcompat-v7:26.1.0'
+    implementation 'org.tensorflow:tensorflow-android:1.4.0'
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'com.android.support.test:runner:1.0.1'
+    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
+}

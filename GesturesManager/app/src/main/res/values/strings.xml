@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">Motions Gestures</string>
+    <string name="no_permissions">No \"Write external permissions\"</string>
+    <string name="sensor_failed">Sensor listener registration failed</string>
+    <string name="enter_file_name">Enter file name</string>
+    <string name="file_name">File name</string>
+    <string name="data_saved">Data saved successfully</string>
+    <string name="failed_to_save">Failed to save data</string>
+    <string name="failed_to_save_error">Failed to save data. Error:</string>
+    <string name="failed_to_load">Failed to load data</string>
+    <string name="failed_to_load_error">Failed to load data. Error:</string>
+</resources>
