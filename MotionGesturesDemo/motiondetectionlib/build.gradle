@@ -29,7 +29,7 @@ bintray {
         name = 'motiondetectionlib'
         userOrg = bintray_user
         licenses = ['Apache-2.0']
-        vcsUrl = 'https://github.com/ryanchyshyn/' // TODO
+        vcsUrl = 'https://github.com/ryanchyshyn/motion_gestures_detection.git'
         publish = true
 
         version {
