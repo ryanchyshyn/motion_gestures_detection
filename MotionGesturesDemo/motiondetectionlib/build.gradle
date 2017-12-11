@@ -18,7 +18,7 @@ bintray {
     configurations = ['archives']
 
     filesSpec {
-        from 'build/outputs/aar', 'build/poms'
+        from 'build/outputs/aar', 'build/poms', 'build/libs'
         rename '.+\\.aar', artifactPrefix + '.aar'
         rename 'pom-default\\.xml', artifactPrefix + '.pom'
         into 'uk/co/lemberg/motiondetectionlib/' + version
@@ -59,6 +59,19 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+}
+
+task sourcesJar(type: Jar) {
+    from android.sourceSets.main.java.srcDirs
+    classifier = 'sources'
+}
+
+afterEvaluate { project ->
+    project.tasks.preBuild.dependsOn sourcesJar
+}
+
+artifacts {
+    archives sourcesJar
 }
 
 dependencies {
